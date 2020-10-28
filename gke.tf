@@ -32,7 +32,7 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
   node_config {
     preemptible  = true
     # machine_type = "n1-standard-1"
-    machine_type = "g1-micro" # "f1-micro" free tier not allowed (too little memory)
+    machine_type = "g1-small" # "f1-micro" free tier not allowed (too little memory)
 
     metadata = {
       disable-legacy-endpoints = "true"
