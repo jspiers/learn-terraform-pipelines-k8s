@@ -1,5 +1,4 @@
 output "cluster" {
-  # value = google_container_cluster.engineering.name
   value = digitalocean_kubernetes_cluster.engineering.name
 }
 
@@ -7,11 +6,10 @@ output "version" {
   value = digitalocean_kubernetes_cluster.engineering.version
 }
 
-# output "host" {
-#   # value     = google_container_cluster.engineering.endpoint
-#   value     = digitalocean_kubernetes_cluster.engineering.endpoint
-#   sensitive = true
-# }
+output "host" {
+  value     = digitalocean_kubernetes_cluster.engineering.endpoint
+  sensitive = true
+}
 
 # output "cluster_ca_certificate" {
 #   # value     = base64decode(google_container_cluster.engineering.master_auth.0.cluster_ca_certificate)
