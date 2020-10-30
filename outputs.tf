@@ -35,5 +35,5 @@ output "enable_consul_and_vault" {
 
 output "kube_config" {
   value = digitalocean_kubernetes_cluster.engineering.kube_config[0].raw_config
-  # sensitive = true
+  sensitive = true
 }
