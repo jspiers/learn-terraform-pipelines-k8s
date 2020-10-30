@@ -1,5 +1,8 @@
 # data "google_compute_zones" "available" {}
 
+data "digitalocean_kubernetes_versions" "example" {
+  version_prefix = "1.18."
+}
 
 # Digital Ocean Managed Kubernetes cluster
 resource "digitalocean_kubernetes_cluster" "engineering" {
@@ -7,7 +10,9 @@ resource "digitalocean_kubernetes_cluster" "engineering" {
   region  = var.region
   # get available versions: "doctl kubernetes options versions"
   # version = "latest" # use latest available version instead of hardcoding
-  version = "1.18.10-do.0"
+  # version = "1.18.10-do.0"
+  version = data.digitalocean_kubernetes_versions.example.latest_version
+  auto_upgrade = true
 
   tags = ["learn-terraform-pipelines-k8s"] # tag for future reference
 
@@ -78,12 +83,12 @@ resource "digitalocean_kubernetes_cluster" "engineering" {
 #   template = file("${path.module}/kubeconfig-template.yaml")
 
 #   vars = {
-#     cluster_name    = google_container_cluster.engineering.name
-#     user_name       = google_container_cluster.engineering.master_auth[0].username
-#     user_password   = google_container_cluster.engineering.master_auth[0].password
-#     endpoint        = google_container_cluster.engineering.endpoint
-#     cluster_ca      = google_container_cluster.engineering.master_auth[0].cluster_ca_certificate
-#     client_cert     = google_container_cluster.engineering.master_auth[0].client_certificate
-#     client_cert_key = google_container_cluster.engineering.master_auth[0].client_key
+#     cluster_name    = digitalocean_kubernetes_cluster.engineering.name
+#     # user_name       = digitalocean_kubernetes_cluster.engineering.master_auth[0].username
+#     # user_password   = digitalocean_kubernetes_cluster.engineering.master_auth[0].password
+#     endpoint        = digitalocean_kubernetes_cluster.engineering.endpoint
+#     # cluster_ca      = digitalocean_kubernetes_cluster.engineering.master_auth[0].cluster_ca_certificate
+#     # client_cert     = digitalocean_kubernetes_cluster.engineering.master_auth[0].client_certificate
+#     # client_cert_key = digitalocean_kubernetes_cluster.engineering.master_auth[0].client_key
 #   }
 # }

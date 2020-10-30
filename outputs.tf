@@ -3,6 +3,10 @@ output "cluster" {
   value = digitalocean_kubernetes_cluster.engineering.name
 }
 
+output "version" {
+  value = digitalocean_kubernetes_cluster.engineering.version
+}
+
 output "host" {
   # value     = google_container_cluster.engineering.endpoint
   value     = digitalocean_kubernetes_cluster.engineering.endpoint
@@ -24,10 +28,11 @@ output "host" {
 #   sensitive = true
 # }
 
-# output "enable_consul_and_vault" {
-#   value = var.enable_consul_and_vault
-# }
+output "enable_consul_and_vault" {
+  value = var.enable_consul_and_vault
+}
 
-# output "kubeconfig" {
-#   value = data.template_file.kubeconfig.rendered
-# }
+output "kube_config" {
+  # value = data.template_file.kubeconfig.rendered
+  value = digitalocean_kubernetes_cluster.engineering.kube_config
+}
