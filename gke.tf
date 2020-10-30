@@ -31,9 +31,9 @@ resource "google_container_node_pool" "engineering_preemptible_nodes" {
 
   node_config {
     preemptible  = true
-    # machine_type = "n1-standard-1"
-    # "f1-micro" free tier not allowed (too little memory)
-    # "g1-small" works
+    # "n1-standard-1" # original machine type from demo code
+    # "f1-micro" doesn't work (too little memory)
+    # "g1-small" works but more expensive than e2-micro
     machine_type = "e2-micro"
 
     metadata = {
