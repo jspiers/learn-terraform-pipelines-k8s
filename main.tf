@@ -13,3 +13,8 @@ provider "google" {
   project = var.google_project
   region  = var.region
 }
+
+provider "digitalocean" {
+  version = "~> 1.23"
+  token = var.do_token
+}
