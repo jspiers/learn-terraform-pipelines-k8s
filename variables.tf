@@ -16,7 +16,7 @@ variable "enable_consul_and_vault" {
   description = "Enable consul and vault for the secrets cluster"
 }
 
-variable do_token {
+variable digitalocean_api_token {
   type        = string
   description = "Digital Ocean API Token"
 }

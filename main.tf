@@ -8,13 +8,7 @@ terraform {
   }
 }
 
-provider "google" {
-  version = "3.10.0"
-  project = var.google_project
-  region  = var.region
-}
-
 provider "digitalocean" {
-  version = "~> 1.23"
-  token = var.do_token
+  version = "~> 2.0"
+  token = var.digitalocean_api_token
 }
