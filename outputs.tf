@@ -12,7 +12,7 @@ output "host" {
 }
 
 output "token" {
-  value = var.digitalocean_api_token
+  value     = var.digitalocean_api_token
   sensitive = true
 }
 

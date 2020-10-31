@@ -10,5 +10,5 @@ terraform {
 
 provider "digitalocean" {
   version = "~> 2.0"
-  token = var.digitalocean_api_token
+  token   = var.digitalocean_api_token
 }
