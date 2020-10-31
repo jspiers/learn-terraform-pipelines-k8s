@@ -23,7 +23,7 @@ resource "digitalocean_kubernetes_cluster" "k8s" {
     auto_scale = true
     min_nodes  = 1
     max_nodes  = var.enable_consul_and_vault ? 2 : 1
-    tags = ["terraform"] # tag for future reference
+    tags       = ["terraform"] # tag for future reference
     labels = {
       strength = "weak"
     }
@@ -36,7 +36,7 @@ resource "digitalocean_kubernetes_node_pool" "strong" {
   name       = "strong"
   size       = "s-2vcpu-4gb" # bigger instances
   node_count = 1
-  tags = ["terraform"] # tag for future reference
+  tags       = ["terraform"] # tag for future reference
   labels = {
     strength = "strong"
   }
