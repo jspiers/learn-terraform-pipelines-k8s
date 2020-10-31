@@ -3,7 +3,7 @@ data "digitalocean_kubernetes_versions" "v1_18" {
 }
 
 # Digital Ocean Managed Kubernetes cluster
-resource "digitalocean_kubernetes_cluster" "engineering" {
+resource "digitalocean_kubernetes_cluster" "k8s" {
   name   = var.cluster_name
   region = var.region
 
@@ -24,8 +24,20 @@ resource "digitalocean_kubernetes_cluster" "engineering" {
     min_nodes  = 1
     max_nodes  = var.enable_consul_and_vault ? 3 : 1
     # tags = ["terraform"]
-    # labels = {
-    #   strength = "weak"
-    # }
+    labels = {
+      strength = "weak"
+    }
+  }
+}
+
+# Another node pool with more CPU/memory per node
+resource "digitalocean_kubernetes_node_pool" "strong" {
+  cluster_id = digitalocean_kubernetes_cluster.k8s.id
+  name       = "strong"
+  size       = "s-2vcpu-4gb" # bigger instances
+  node_count = 1
+  # tags = ["terraform"]
+  labels = {
+    strength = "strong"
   }
 }
