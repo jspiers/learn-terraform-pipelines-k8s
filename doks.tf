@@ -11,7 +11,7 @@ resource "digitalocean_kubernetes_cluster" "k8s" {
   version      = data.digitalocean_kubernetes_versions.v1_18.latest_version
   auto_upgrade = true
 
-  tags = ["learn-terraform-pipelines-k8s"] # tag for future reference
+  tags = ["terraform"] # tag for future reference
 
   # Default node pool (required)
   node_pool {
@@ -22,8 +22,8 @@ resource "digitalocean_kubernetes_cluster" "k8s" {
     # node_count = var.enable_consul_and_vault ? 2 : 1
     auto_scale = true
     min_nodes  = 1
-    max_nodes  = var.enable_consul_and_vault ? 3 : 1
-    # tags = ["terraform"]
+    max_nodes  = var.enable_consul_and_vault ? 2 : 1
+    tags = ["terraform"] # tag for future reference
     labels = {
       strength = "weak"
     }
@@ -36,7 +36,7 @@ resource "digitalocean_kubernetes_node_pool" "strong" {
   name       = "strong"
   size       = "s-2vcpu-4gb" # bigger instances
   node_count = 1
-  # tags = ["terraform"]
+  tags = ["terraform"] # tag for future reference
   labels = {
     strength = "strong"
   }
